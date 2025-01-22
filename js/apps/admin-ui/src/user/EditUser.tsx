@@ -227,6 +227,7 @@ const EditUserForm = ({
           ]}
           onToggle={(value) => save({ ...user, enabled: value })}
           isEnabled={user.enabled}
+          isReadOnly={user.username?.toLowerCase() == "default" && user.enabled}
         />
       )}
 
