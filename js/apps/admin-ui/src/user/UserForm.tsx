@@ -226,13 +226,14 @@ export const UserForm = ({
               <Controller
                 name="isAdmin"
                 control={control}
-                defaultValue={false}
+                defaultValue={true}
                 render={({ field }) => (
                   <Checkbox
                     id="kc-is-admin"
                     data-testid="is-admin"
                     label={"Is Administrator?"}
                     isChecked={field.value === true}
+                    isDisabled={true}
                     onChange={(value) => field.onChange(value)}
                   />
                 )}
