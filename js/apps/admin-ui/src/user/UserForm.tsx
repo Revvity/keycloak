@@ -231,7 +231,7 @@ export const UserForm = ({
                   <Checkbox
                     id="kc-is-admin"
                     data-testid="is-admin"
-                    label={"Is Administrator?"}
+                    label={"Is User Management Administrator?"}
                     isChecked={field.value === true}
                     onChange={(value) => field.onChange(value)}
                   />
