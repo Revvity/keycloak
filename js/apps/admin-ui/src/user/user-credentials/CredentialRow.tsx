@@ -18,6 +18,7 @@ type CredentialRowProps = {
   credential: CredentialRepresentation;
   resetPassword: () => void;
   toggleDelete: () => void;
+  isAdmin: boolean;
   children: ReactNode;
 };
 
@@ -25,6 +26,7 @@ export const CredentialRow = ({
   credential,
   resetPassword,
   toggleDelete,
+  isAdmin,
   children,
 }: CredentialRowProps) => {
   const { t } = useTranslation("users");
@@ -73,7 +75,7 @@ export const CredentialRow = ({
           {t("showDataBtn")}
         </Button>
       </Td>
-      {credential.type === "password" ? (
+      {credential.type === "password" && isAdmin != true ? (
         <Td isActionCell>
           <Button
             variant="secondary"

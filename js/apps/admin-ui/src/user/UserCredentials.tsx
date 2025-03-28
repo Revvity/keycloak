@@ -80,6 +80,8 @@ export const UserCredentials = ({ user }: UserCredentialsProps) => {
     tempItemOrder: [""],
   });
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
   useFetch(
     () => adminClient.users.getCredentials({ id: user.id! }),
     (credentials) => {
@@ -103,6 +105,14 @@ export const UserCredentials = ({ user }: UserCredentialsProps) => {
       );
     },
     [key]
+  );
+
+  useFetch(
+    () => adminClient.users.listRealmRoleMappings({ id: user.id! }),
+    (roles) => {
+      setIsAdmin(roles.some((role) => role.name === "administrator"));
+    },
+    []
   );
 
   const passwordTypeFinder = userCredentials.find(
@@ -148,6 +158,7 @@ export const UserCredentials = ({ user }: UserCredentialsProps) => {
         toggleDeleteDialog();
       }}
       resetPassword={resetPassword}
+      isAdmin={isAdmin}
     >
       <InlineLabelEdit
         credential={credential}
