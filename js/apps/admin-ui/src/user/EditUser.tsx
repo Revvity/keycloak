@@ -31,7 +31,6 @@ import {
   isUserProfileError,
   userProfileErrorToString,
 } from "./UserProfileFields";
-import { UserRoleMapping } from "./UserRoleMapping";
 import { UserParams, UserTab, toUser } from "./routes/User";
 import { toUsers } from "./routes/Users";
 
@@ -132,7 +131,6 @@ const EditUserForm = ({
 
   const settingsTab = useTab("settings");
   const credentialsTab = useTab("credentials");
-  const roleMappingTab = useTab("role-mapping");
 
   // Ensure the form remains up-to-date when the user is updated.
   useUpdateEffect(() => userForm.reset(user), [user]);
@@ -261,16 +259,6 @@ const EditUserForm = ({
                   {...credentialsTab}
                 >
                   <UserCredentials user={user} />
-                </Tab>
-              )}
-              {!isServiceUser && (
-                <Tab
-                  data-testid="role-mapping-tab"
-                  isHidden={!user.access?.mapRoles}
-                  title={<TabTitleText>{t("roleMapping")}</TabTitleText>}
-                  {...roleMappingTab}
-                >
-                  <UserRoleMapping id={user.id!} name={user.username!} />
                 </Tab>
               )}
             </RoutableTabs>
